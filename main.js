@@ -11,12 +11,13 @@ const quotes = document.getElementsByClassName("quote")
 let multiplierNumber = 1
 
 async function quoteText(){
-    for (let i = 0; i < quotes.length; i++){
+    for (let i = 0; i < multiplierNumber; i++){
         quotes[i].hidden = false
         console.log(quotes.hidden)
         quotes[i].textContent = await retrieveQuote()
     }
 }
+//TODO make quotes hidden when multiplier goes down 
 
 async function retrieveQuote(){
     const data = await fetch("https://api.kanye.rest")
