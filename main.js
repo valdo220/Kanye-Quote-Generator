@@ -9,6 +9,7 @@ const multiplier = document.getElementById("multiplier")
 const quoteButton = document.getElementById("quoteButton")
 const quotes = document.getElementsByClassName("quote")
 let multiplierNumber = 1
+console.log(quotes.length)
 
 async function quoteText(){
     for (let i = 0; i < multiplierNumber; i++){
@@ -16,7 +17,15 @@ async function quoteText(){
         console.log(quotes.hidden)
         quotes[i].textContent = await retrieveQuote()
     }
+
 }
+
+async function undoQuoteText() {
+    for (let i = 0; i < 5; i++){
+        quotes[i].hidden = true
+    }
+}
+
 //TODO make quotes hidden when multiplier goes down 
 
 async function retrieveQuote(){
@@ -34,6 +43,7 @@ quoteButton.addEventListener('click', () => {
 })
 
 arrowUp.addEventListener('click', () => {
+    undoQuoteText()
     if (multiplierNumber < 5) {
         multiplierNumber++
         console.log("changed Number to " + multiplierNumber)
@@ -42,6 +52,7 @@ arrowUp.addEventListener('click', () => {
 })
 
 arrowDown.addEventListener('click', () => {
+    undoQuoteText()
     if (multiplierNumber > 1) {
         multiplierNumber--
         console.log("changed Number to " + multiplierNumber)
