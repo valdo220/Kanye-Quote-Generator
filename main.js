@@ -20,13 +20,11 @@ async function quoteText(){
 
 }
 
-async function undoQuoteText() {
-    for (let i = 0; i < 5; i++){
-        quotes[i].hidden = true
-    }
+async function undoQuoteText(){
+        for (let i = 4; i > multiplierNumber - 1; i--){
+            quotes[i].hidden = true
+        }
 }
-
-//TODO make quotes hidden when multiplier goes down 
 
 async function retrieveQuote(){
     const data = await fetch("https://api.kanye.rest")
@@ -37,13 +35,13 @@ async function retrieveQuote(){
 console.log(quotes)
 
 quoteButton.addEventListener('click', () => {
+    undoQuoteText()
     retrieveQuote()
     quoteText()
     console.log("quotes changed")
 })
 
 arrowUp.addEventListener('click', () => {
-    undoQuoteText()
     if (multiplierNumber < 5) {
         multiplierNumber++
         console.log("changed Number to " + multiplierNumber)
@@ -52,7 +50,6 @@ arrowUp.addEventListener('click', () => {
 })
 
 arrowDown.addEventListener('click', () => {
-    undoQuoteText()
     if (multiplierNumber > 1) {
         multiplierNumber--
         console.log("changed Number to " + multiplierNumber)
